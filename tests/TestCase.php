@@ -1,6 +1,7 @@
 <?php
 
-abstract class TestCase extends \Orchestra\Testbench\TestCase {
+abstract class TestCase extends \Orchestra\Testbench\TestCase
+{
 
     protected function getPackageProviders($app)
     {
@@ -15,5 +16,4 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase {
 
         Mockery::close();
     }
-
 }

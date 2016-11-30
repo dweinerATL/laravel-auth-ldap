@@ -2,7 +2,8 @@
 
 use LaravelAuthLdap\BaseLdapUser;
 
-class BaseLdapUserTest extends TestCase {
+class BaseLdapUserTest extends TestCase
+{
 
     /**
      * @var BaseLdapUser
@@ -52,5 +53,4 @@ class BaseLdapUserTest extends TestCase {
         // check that the identifier is being pulled correctly
         $this->assertEquals($username, $this->baseLdapUser->getAuthIdentifier());
     }
-
 }

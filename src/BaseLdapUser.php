@@ -2,7 +2,8 @@
 
 use LaravelAuthLdap\Contracts\LdapUser;
 
-class BaseLdapUser implements LdapUser {
+class BaseLdapUser implements LdapUser
+{
 
     /**
      * An array of fields with names to be converted for the magic method __get().
@@ -63,13 +64,11 @@ class BaseLdapUser implements LdapUser {
      */
     public function __get($field)
     {
-        if (isset($this->convertFields[$field]))
-        {
+        if (isset($this->convertFields[$field])) {
             $field = $this->convertFields[$field];
         }
 
-        if (isset($this->user->$field))
-        {
+        if (isset($this->user->$field)) {
             return $this->user->$field;
         }
     }
@@ -103,5 +102,4 @@ class BaseLdapUser implements LdapUser {
     {
         return $this->user->displayName;
     }
-
 }

@@ -2,7 +2,8 @@
 
 use LaravelAuthLdap\BaseLdapUserProvider;
 
-class BaseLdapUserProviderTest extends TestCase {
+class BaseLdapUserProviderTest extends TestCase
+{
 
     /**
      * @var BaseLdapUserProvider
@@ -181,5 +182,4 @@ class BaseLdapUserProviderTest extends TestCase {
         // if using provider, should update token in provider
         $this->baseLdapUserProvider->updateRememberToken($providerUser, 'token');
     }
-
 }
