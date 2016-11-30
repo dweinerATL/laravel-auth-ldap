@@ -1,6 +1,6 @@
 <?php namespace LaravelAuthLdap; 
 
-use adLDAP\adLDAP;
+use Adldap\Adldap;
 use Illuminate\Contracts\Foundation\Application;
 use LaravelAuthLdap\Contracts\LdapServer;
 
@@ -9,7 +9,7 @@ class AdLDAPLdapServer implements LdapServer {
     /**
      * The AD server to query/authenticate from.
      *
-     * @var adLDAP
+     * @var Adldap
      */
     protected $adServer;
 

@@ -1,6 +1,6 @@
 <?php
 
-use adLDAP\adLDAP;
+use Adldap\Adldap;
 
 return [
     'account_suffix' => '@mydomain.local',
@@ -15,5 +15,5 @@ return [
     'use_ssl' => false,
     'use_tls' => false,
     'recursive_groups' => true,
-    'ad_port' => adLDAP::ADLDAP_LDAP_PORT,
+    'ad_port' => Adldap::ADLDAP_LDAP_PORT,
 ];

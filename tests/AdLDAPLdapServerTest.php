@@ -4,17 +4,17 @@ use LaravelAuthLdap\AdLDAPLdapServer;
 
 class AdLDAPLdapServerTest extends TestCase {
 
-    protected $adLDAP;
+    protected $Adldap;
 
-    protected $adLDAPLdapServer;
+    protected $AdldapLdapServer;
 
     public function setUp()
     {
         parent::setUp();
 
-        $this->adLDAPLdapServer = new AdLDAPLdapServer();
-        $this->adLDAP = Mockery::mock();
-        $this->adLDAPLdapServer->setAdServer($this->adLDAP);
+        $this->AdldapLdapServer = new AdLDAPLdapServer();
+        $this->Adldap = Mockery::mock();
+        $this->AdldapLdapServer->setAdServer($this->Adldap);
     }
 
     public function testRetrieveByUsername()
@@ -22,16 +22,16 @@ class AdLDAPLdapServerTest extends TestCase {
         $username = 'foo';
 
         // set up mocks
-        $adLDAPUsers = Mockery::mock();
-        $this->adLDAP->shouldReceive('user')->andReturn($adLDAPUsers);
+        $AdldapUsers = Mockery::mock();
+        $this->Adldap->shouldReceive('user')->andReturn($AdldapUsers);
 
         // should be null if no user was found
-        $adLDAPUsers->shouldReceive('infoCollection')->once()->andReturn(false);
-        $this->assertNull($this->adLDAPLdapServer->retrieveByUsername($username));
+        $AdldapUsers->shouldReceive('infoCollection')->once()->andReturn(false);
+        $this->assertNull($this->AdldapLdapServer->retrieveByUsername($username));
 
         // should return an instance of LdapUser if the user was found
-        $adLDAPUsers->shouldReceive('infoCollection')->once()->andReturn(true);
-        $this->assertInstanceOf('LaravelAuthLdap\Contracts\LdapUser', $this->adLDAPLdapServer->retrieveByUsername($username));
+        $AdldapUsers->shouldReceive('infoCollection')->once()->andReturn(true);
+        $this->assertInstanceOf('LaravelAuthLdap\Contracts\LdapUser', $this->AdldapLdapServer->retrieveByUsername($username));
     }
 
     public function testAuthenticate()
@@ -41,11 +41,11 @@ class AdLDAPLdapServerTest extends TestCase {
         $invalidPassword = 'invalid';
 
         // set up expectations
-        $this->adLDAP->shouldReceive('authenticate')->with($username, $validPassword)->andReturn(true);
-        $this->adLDAP->shouldReceive('authenticate')->with($username, $invalidPassword)->andReturn(false);
+        $this->Adldap->shouldReceive('authenticate')->with($username, $validPassword)->andReturn(true);
+        $this->Adldap->shouldReceive('authenticate')->with($username, $invalidPassword)->andReturn(false);
 
-        $this->assertTrue($this->adLDAPLdapServer->authenticate($username, $validPassword));
-        $this->assertFalse($this->adLDAPLdapServer->authenticate($username, $invalidPassword));
+        $this->assertTrue($this->AdldapLdapServer->authenticate($username, $validPassword));
+        $this->assertFalse($this->AdldapLdapServer->authenticate($username, $invalidPassword));
     }
 
 }

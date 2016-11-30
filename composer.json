@@ -1,10 +1,9 @@
 {
-    "name": "aparticka/laravel-auth-ldap",
+    "name": "turnercode/laravel-auth-ldap",
     "description": "Laravel 5 LDAP Authentication Driver",
     "require": {
-        "php": ">=5.4.0",
-        "strebl/adldap": "~4.0",
-        "laravel/framework": "~5.0"
+        "php": ">=5.6.0",
+        "adldap2/adldap2": "6.1.*"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

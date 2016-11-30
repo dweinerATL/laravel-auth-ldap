@@ -99,4 +99,9 @@ class BaseLdapUser implements LdapUser {
         return null;
     }
 
+    public function getAuthIdentifierName()
+    {
+        return $this->user->displayName;
+    }
+
 }
