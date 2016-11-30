@@ -1,6 +1,7 @@
-<?php namespace LaravelAuthLdap\Contracts; 
+<?php namespace LaravelAuthLdap\Contracts;
 
-interface LdapServer {
+interface LdapServer
+{
 
     /**
      * Retrieve the user from the LDAP server via their username.
@@ -18,5 +19,4 @@ interface LdapServer {
      * @return bool
      */
     public function authenticate($username, $password);
-
 }

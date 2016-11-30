@@ -2,7 +2,8 @@
 
 use LaravelAuthLdap\AdLDAPLdapServer;
 
-class AdLDAPLdapServerTest extends TestCase {
+class AdLDAPLdapServerTest extends TestCase
+{
 
     protected $Adldap;
 
@@ -47,5 +48,4 @@ class AdLDAPLdapServerTest extends TestCase {
         $this->assertTrue($this->AdldapLdapServer->authenticate($username, $validPassword));
         $this->assertFalse($this->AdldapLdapServer->authenticate($username, $invalidPassword));
     }
-
 }

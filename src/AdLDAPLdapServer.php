@@ -1,10 +1,11 @@
-<?php namespace LaravelAuthLdap; 
+<?php namespace LaravelAuthLdap;
 
 use Adldap\Adldap;
 use Illuminate\Contracts\Foundation\Application;
 use LaravelAuthLdap\Contracts\LdapServer;
 
-class AdLDAPLdapServer implements LdapServer {
+class AdLDAPLdapServer implements LdapServer
+{
 
     /**
      * The AD server to query/authenticate from.
@@ -26,8 +27,7 @@ class AdLDAPLdapServer implements LdapServer {
     public function retrieveByUsername($username)
     {
         $user = $this->adServer->user()->infoCollection($username);
-        if ($user !== false)
-        {
+        if ($user !== false) {
             $ldapUser = app('LaravelAuthLdap\Contracts\LdapUser');
             $ldapUser->setUser($user);
 

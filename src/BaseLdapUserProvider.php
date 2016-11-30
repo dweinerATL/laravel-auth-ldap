@@ -6,7 +6,8 @@ use LaravelAuthLdap\Contracts\LdapServer;
 use LaravelAuthLdap\Contracts\LdapUser;
 use LaravelAuthLdap\Contracts\LdapUserProvider;
 
-class BaseLdapUserProvider implements LdapUserProvider {
+class BaseLdapUserProvider implements LdapUserProvider
+{
 
     /**
      * The names of the fields used when credentials are passed.
@@ -100,10 +101,11 @@ class BaseLdapUserProvider implements LdapUserProvider {
     public function retrieveById($identifier)
     {
         // if provider is set, grab from there
-        if ($this->isUsingProvider())
-        {
+        if ($this->isUsingProvider()) {
             $user = $this->provider->retrieveById($identifier);
-            if ($user !== null || $this->userMustExistInProvider) return $user;
+            if ($user !== null || $this->userMustExistInProvider) {
+                return $user;
+            }
         }
 
         // else grab from LDAP
@@ -113,25 +115,27 @@ class BaseLdapUserProvider implements LdapUserProvider {
     public function retrieveByToken($identifier, $token)
     {
         // if provider is set, grab from there
-        if ($this->isUsingProvider()) return $this->provider->retrieveByToken($identifier, $token);
+        if ($this->isUsingProvider()) {
+            return $this->provider->retrieveByToken($identifier, $token);
+        }
     }
 
     public function updateRememberToken(Authenticatable $user, $token)
     {
         // if provider is set and the user passed isn't an LDAP one, update using the provider
-        if ($this->isUsingProvider() && ! $user instanceof LdapUser)
-        {
+        if ($this->isUsingProvider() && ! $user instanceof LdapUser) {
             $this->provider->updateRememberToken($user, $token);
         }
     }
 
     public function retrieveByCredentials(array $credentials)
     {
-        if ($this->isUsingProvider())
-        {
-            // get the user from the provider
+        if ($this->isUsingProvider()) {
+        // get the user from the provider
             $user = $this->provider->retrieveByCredentials($credentials);
-            if ($user !== null || $this->userMustExistInProvider) return $user;
+            if ($user !== null || $this->userMustExistInProvider) {
+                return $user;
+            }
         }
 
         // get the name of the credentials username field
@@ -139,9 +143,8 @@ class BaseLdapUserProvider implements LdapUserProvider {
         // grab the username from the credentials passed
         $username = ($usernameField !== null) ? array_get($credentials, $usernameField) : null;
 
-        if ($username !== null)
-        {
-            // get the user from LDAP
+        if ($username !== null) {
+        // get the user from LDAP
             return $this->ldapServer->retrieveByUsername($username);
         }
     }
@@ -155,5 +158,4 @@ class BaseLdapUserProvider implements LdapUserProvider {
         // validate with the LDAP server
         return $this->ldapServer->authenticate($credentials[$usernameField], $credentials[$passwordField]);
     }
-
 }
